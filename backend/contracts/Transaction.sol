@@ -56,4 +56,12 @@ contract Transaction {
     {
         return transactions;
     }
+
+    //function to get all the number of transactions
+    function getTransactionCount() public view returns (uint256) {
+        return transactionCount;
+    }
+
+    //View keyword means that the function can only be used to view the date.
+    //Therefore no ether needed to run this function.
 }
