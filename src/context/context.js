@@ -1,6 +1,6 @@
 import { useEffect, useState, createContext } from "react"
 import { ethers } from "ethers"
-import { contractAbi, contractAddress } from "../utils/Transactions.json"
+import { contractAbi, contractAddress } from "../utils/constants"
 
 export const TransactionContext = createContext()
 const { ethereum } = window
