@@ -4,7 +4,7 @@ import styles from "../../styles/Activity.module.css"
 function ActivityCard() {
     return (
         <div className={styles.container}>
-            {/* <div className={styles.tabContainer}>
+            <div className={styles.tabContainer}>
                 <p className={styles.tabTitle}>Activity</p>
                 <div className={styles.navigationContainer}>
                     <div className={styles.navigationItem} data-current>
@@ -18,7 +18,7 @@ function ActivityCard() {
                     </div>
                 </div>
             </div>
-            <div className={styles.feedList}></div> */}
+            <div className={styles.feedList}></div>
         </div>
     )
 }
