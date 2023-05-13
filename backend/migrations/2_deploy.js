@@ -1,5 +1,9 @@
-const Transaction = artifacts.require("Transaction");
+// const { artifacts } = require("truffle");
+
+// import { artifacts } from "truffle";
+
+const Transactions = artifacts.require("Transactions");
 
 module.exports = function (deployer) {
-  deployer.deploy(Transaction);
+  deployer.deploy(Transactions);
 };

@@ -2,17 +2,17 @@
 
 pragma solidity ^0.8.15;
 
-contract Transaction {
+contract Transactions {
     //Number of transactions
     uint256 transactionCount;
 
-    //This will be an event that will be fired when a Transaction is made
+    //This will be an event that will be fired when a Transactions is made
     event Transfer(
         address from,
         address reciever,
         uint256 amount,
         string message,
-        uint timestamp
+        uint256 timestamp
     );
 
     //Struct of the transaction that will be storing on chain.
@@ -31,7 +31,7 @@ contract Transaction {
     //Function to add a transaction to the blockchain with our struct.
     function addBlockchain(
         address payable reciever,
-        uint amount,
+        uint256 amount,
         string memory message
     ) public {
         transactionCount += 1;
@@ -48,7 +48,7 @@ contract Transaction {
         emit Transfer(msg.sender, reciever, amount, message, block.timestamp);
     }
 
-    //Function to get all the Transaction.
+    //Function to get all the Transactions.
     function getAllTransaction()
         public
         view
