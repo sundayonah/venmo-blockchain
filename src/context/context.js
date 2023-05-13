@@ -1,11 +1,9 @@
 import { useEffect, useState, createContext } from "react"
 import { ethers } from "ethers"
-import contractAbi from "../utils/Transactions.json"
+import { contractAbi, contractAddress } from "../utils/Transactions.json"
 
 export const TransactionContext = createContext()
 const { ethereum } = window
-
-const contractAddress = "0x44D9639342223b2C4d502808cD5968eA22F88A6A"
 
 const createEthereumContract = () => {
     const provider = new ethers.providers.Web3Provider(ethereum)
@@ -26,6 +24,7 @@ export const TransactioProvider = ({ children }) => {
 
     useEffect(() => {
         checkIfWalletIsConnected()
+        checkIfTransactionExists()
     }, [])
 
     const checkIfWalletIsConnected = async () => {
@@ -54,6 +53,18 @@ export const TransactioProvider = ({ children }) => {
             window.location.reload()
             console.log(currentAccount)
             throw new Error("No ethereum Object Found")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const checkIfTransactionExists = async () => {
+        try {
+            if (ethereum) {
+                const transactionContract = createEthereumContract()
+                const currentTransactionCount = await transactionContract.getTransactionCount()
+                window.localStorage.setItem("transactionCount", currentTransactionCount)
+            }
         } catch (error) {
             console.log(error)
         }
