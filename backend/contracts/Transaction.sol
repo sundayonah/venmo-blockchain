@@ -1,4 +1,4 @@
-//SPDX-License-Identifier:UNLICENSED
+// SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.15;
 
@@ -16,7 +16,7 @@ contract Transactions {
     );
 
     //Struct of the transaction that will be storing on chain.
-    struct TransactionStruct {
+    struct TransactionsStruct {
         address sender;
         address reciever;
         uint256 amount;
@@ -25,35 +25,20 @@ contract Transactions {
     }
 
     //Array of transactions
-    TransactionStruct[] transactions;
+    TransactionsStruct[] transactions;
 
-    //Constructor
     //Function to add a transaction to the blockchain with our struct.
-    function addBlockchain(
-        address payable reciever,
-        uint256 amount,
-        string memory message
-    ) public {
+    function addBlockchain(address payable reciever, uint256 amount, string memory message) public {
         transactionCount += 1;
         transactions.push(
-            TransactionStruct(
-                msg.sender,
-                reciever,
-                amount,
-                message,
-                block.timestamp
-            )
+            TransactionsStruct(msg.sender, reciever, amount, message, block.timestamp)
         );
-        //emit the event we created earlier
+        //emit the events we created earlier
         emit Transfer(msg.sender, reciever, amount, message, block.timestamp);
     }
 
     //Function to get all the Transactions.
-    function getAllTransaction()
-        public
-        view
-        returns (TransactionStruct[] memory)
-    {
+    function getAllTransaction() public view returns (TransactionsStruct[] memory) {
         return transactions;
     }
 
