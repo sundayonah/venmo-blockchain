@@ -70,6 +70,45 @@ export const TransactioProvider = ({ children }) => {
         }
     }
 
+    const sendTransaction = async () => {
+        try {
+            if (ethereum) {
+                const transactionContract = createEthereumContract()
+                const parseAmount = ethers.utils.parseEther(amount)
+
+                await ethereum.request({
+                    method: "eth_sendTransaction",
+                    params: [
+                        {
+                            from: currentAccount,
+                            to: addressTo,
+                            gas: "0x5208",
+                            value: parseAmount._hex,
+                        },
+                    ],
+                })
+                const transactionHash = await transactionContract.addBlockchain(
+                    addressTo,
+                    parseAmount,
+                    message
+                )
+                setIsLoading(true)
+                console.log(`Loading -- ${transactionHash.hash}`)
+                await transactionHash.wait()
+                console.log(`Succes -- ${transactionHash.hash}`)
+                setIsLoading(false)
+
+                const transactioCount = await transactionContract.getTransactionCount()
+                setTransactionCount(transactioCount.toNumber())
+                window.location.reload()
+            } else {
+                console.log("No ethereum Object")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <TransactionContext.Provider value={{ connectWallet, currentAccount }}>
             {children}
