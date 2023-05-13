@@ -11,7 +11,8 @@ const Navbar = () => {
         <nav className={styles.navigationContainer}>
             <div className={styles.container}>
                 <div className={styles.logoContainer}>
-                    <img src={VenmoImg} alt="Venmo Logo" className={styles.logoImage} />
+                    <h1>xhunTeq.</h1>
+                    {/* <img src={VenmoImg} alt="Venmo Logo" className={styles.logoImage} /> */}
                 </div>
                 {currentAccount ? (
                     <div className={styles.actionsContainer}>

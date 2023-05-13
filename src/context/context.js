@@ -1,11 +1,28 @@
 import { useEffect, useState, createContext } from "react"
 import { ethers } from "ethers"
+import contractAbi from "../utils/Transactions.json"
 
 export const TransactionContext = createContext()
-
 const { ethereum } = window
+
+const contractAddress = "0x44D9639342223b2C4d502808cD5968eA22F88A6A"
+
+const createEthereumContract = () => {
+    const provider = new ethers.providers.Web3Provider(ethereum)
+    const signer = provider.getSigner()
+    const transactionContract = new ethers.Contract(contractAddress, contractAbi, signer)
+    return transactionContract
+}
+
 export const TransactioProvider = ({ children }) => {
     const [currentAccount, setCurrentAccoount] = useState()
+    const [addressTo, setAddressTo] = useState("")
+    const [amount, setAmount] = useState(0)
+    const [message, setMessage] = useState("")
+    const [isLoading, setIsLoading] = useState(false)
+    const [transactionCount, setTransactionCount] = useState(
+        localStorage.getItem("transactioCount")
+    )
 
     useEffect(() => {
         checkIfWalletIsConnected()
