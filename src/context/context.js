@@ -25,7 +25,7 @@ export const TransactioProvider = ({ children }) => {
     useEffect(() => {
         checkIfWalletIsConnected()
         checkIfTransactionExists()
-    }, [])
+    }, [transactionCount])
 
     const checkIfWalletIsConnected = async () => {
         try {
