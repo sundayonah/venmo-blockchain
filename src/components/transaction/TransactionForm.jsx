@@ -4,7 +4,7 @@ import styles from "../../styles/Transaction.module.css"
 function TransactionForm() {
     return (
         <div className={styles.container}>
-            {/* <h3 className={styles.formTitle}>Send Payment / Request</h3>
+            <h3 className={styles.formTitle}>Send Payment / Request</h3>
             <form>
                 <div className={styles.formContainer}>
                     <div className={styles.swapContainer}>
@@ -40,7 +40,7 @@ function TransactionForm() {
                         </div>
                     </div>
                 </div>
-            </form> */}
+            </form>
         </div>
     )
 }
