@@ -36,7 +36,7 @@ export const TransactioProvider = ({ children }) => {
             setCurrentAccoount(accounts[0])
             window.location.reload()
             console.log(currentAccount)
-            throw new Error("No ethereum Object")
+            throw new Error("No ethereum Object Found")
         } catch (error) {
             console.log(error)
         }
