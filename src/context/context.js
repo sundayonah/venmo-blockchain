@@ -1,6 +1,11 @@
 import { useEffect, useState, createContext } from "react"
 import { ethers } from "ethers"
 import { contractAbi, contractAddress } from "../utils/constants"
+import TimeAgo from "javascript-time-ago"
+import en from "javascript-time-ago/locale/en"
+
+TimeAgo.addLocale(en)
+const timeAgo = new TimeAgo("en-US")
 
 export const TransactionContext = createContext()
 const { ethereum } = window
@@ -18,6 +23,7 @@ export const TransactioProvider = ({ children }) => {
     const [amount, setAmount] = useState(0)
     const [message, setMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
+    const [transactions, setTransactions] = useState([])
     const [transactionCount, setTransactionCount] = useState(
         localStorage.getItem("transactioCount")
     )
@@ -109,6 +115,31 @@ export const TransactioProvider = ({ children }) => {
         }
     }
 
+    // Get All Transaction
+    const getAllTransactions = async () => {
+        try {
+            if (ethereum) {
+                const transactionContract = createEthereumContract()
+                const availableTransactions = await transactionContract.getAllTransactions()
+
+                const structuredTransactions = availableTransactions.map((transaction) => ({
+                    addressTo: transaction.reciever,
+                    addressForm: transaction.sender,
+                    timestamp: timeAgo.format(
+                        new Date(transaction.timestamp.toNumber() * 1000),
+                        "mini"
+                    ),
+                    message: transaction.message,
+                    amount: parseInt(transaction.amount._hex) / 10 ** 18,
+                }))
+                console.log(structuredTransactions)
+                setTransactions(structuredTransactions)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <TransactionContext.Provider
             value={{
@@ -121,6 +152,7 @@ export const TransactioProvider = ({ children }) => {
                 amount,
                 message,
                 setMessage,
+                transactions,
             }}
         >
             {children}

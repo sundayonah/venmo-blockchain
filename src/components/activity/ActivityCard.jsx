@@ -1,7 +1,11 @@
 import { GlobeIcon, UserGroupIcon, UserIcon } from "@heroicons/react/outline"
 import styles from "../../styles/Activity.module.css"
+import { useContext } from "react"
+import { TransactionContext } from "../../context/context"
+import truncateEthAddress from "truncate-eth-address"
 
 function ActivityCard() {
+    const { transactions, curentAccount } = useContext(TransactionContext)
     return (
         <div className={styles.container}>
             <div className={styles.tabContainer}>
