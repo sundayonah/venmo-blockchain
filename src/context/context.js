@@ -3,7 +3,7 @@ import { ethers } from "ethers"
 import { contractAbi, contractAddress } from "../utils/constants"
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
-
+import { Modal, message } from "antd"
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo("en-US")
 
@@ -18,6 +18,8 @@ const createEthereumContract = () => {
 }
 
 export const TransactioProvider = ({ children }) => {
+    //message
+
     const [currentAccount, setCurrentAccoount] = useState()
     const [addressTo, setAddressTo] = useState("")
     const [amount, setAmount] = useState(0)
@@ -25,11 +27,14 @@ export const TransactioProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [transactions, setTransactions] = useState([])
     const [balance, setBalance] = useState(null)
+    const [TransactionStatus, setTransaction] = useState(false)
 
     const [transactionCount, setTransactionCount] = useState(
         localStorage.getItem("transactioCount")
     )
+    // const [messageApi, contextHolder] = message.useMessage()
 
+    
     useEffect(() => {
         checkIfWalletIsConnected()
         checkIfTransactionExists()
@@ -79,6 +84,22 @@ export const TransactioProvider = ({ children }) => {
         }
     }
 
+    // //success f(x)
+    // const success = () => {
+    //     messageApi.open({
+    //         type: "success",
+    //         content: "Transaction Successfull",
+    //     })
+    // }
+
+    // //error f(x)
+    // const error = () => {
+    //     messageApi.open({
+    //         type: "error",
+    //         content: "Transaction not Successfull",
+    //     })
+    // }
+
     const sendTransaction = async () => {
         setIsLoading(true)
         try {
@@ -104,12 +125,14 @@ export const TransactioProvider = ({ children }) => {
                 )
                 console.log(`Loading -- ${transactionHash.hash}`)
                 await transactionHash.wait()
+                // success()
                 console.log(`Succes -- ${transactionHash.hash}`)
                 setIsLoading(false)
+                // error()
 
                 const transactioCount = await transactionContract.getTransactionCount()
                 setTransactionCount(transactioCount.toNumber())
-                window.location.reload()
+                // window.location.reload()
             } else {
                 console.log("No ethereum Object")
             }

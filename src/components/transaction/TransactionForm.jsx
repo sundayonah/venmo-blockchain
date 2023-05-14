@@ -75,7 +75,7 @@ function TransactionForm() {
                                     />
                                 </div>
                             </div>
-                            <button className={styles.maxButton} onClick={handleMaxChange()}>
+                            <button className={styles.maxButton} onClick={handleMaxChange}>
                                 MAX
                             </button>
                         </div>

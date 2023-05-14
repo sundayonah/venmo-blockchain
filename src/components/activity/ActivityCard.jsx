@@ -45,7 +45,7 @@ function ActivityCard() {
                         </div>
                         <div className={styles.feedDetails}>
                             <h3 className={styles.feedAuthor}>
-                                from {truncateEthAddress(addressFrom)} to{" "}
+                                <span className={styles.feedText}>from</span> {truncateEthAddress(addressFrom)} <span className={styles.feedText}>to</span>{" "}
                                 {truncateEthAddress(addressTo)}
                             </h3>
                             <span className={styles.feedCreatedAt}>
