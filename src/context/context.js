@@ -156,6 +156,7 @@ export const TransactioProvider = ({ children }) => {
                 message,
                 setMessage,
                 transactions,
+                isLoading,
             }}
         >
             {children}

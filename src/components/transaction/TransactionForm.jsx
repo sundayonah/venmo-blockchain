@@ -4,8 +4,16 @@ import { useContext } from "react"
 import { TransactionContext } from "../../context/context"
 
 function TransactionForm() {
-    const { sendTransaction, setAddressTo, addressTo, setAmount, amount, message, setMessage } =
-        useContext(TransactionContext)
+    const {
+        sendTransaction,
+        setAddressTo,
+        addressTo,
+        setAmount,
+        amount,
+        message,
+        setMessage,
+        isLoading,
+    } = useContext(TransactionContext)
 
     // SEND TRANSACTION
     const handleSubmit = (e) => {
@@ -62,16 +70,25 @@ function TransactionForm() {
                                 </div>
                             </div>
                             <button
-                                className={styles.sendButton}
+                                className={styles.maxButton}
                                 type="submit"
                                 onClick={sendTransaction}
                             >
-                                Send
+                                MAX
                             </button>
                         </div>
+
+                        <button
+                            className={styles.sendButton}
+                            type="submit"
+                            onClick={sendTransaction}
+                        >
+                            Send
+                        </button>
                     </div>
                 </div>
             </form>
+            {/* <div className={styles.container}>hell</div> */}
         </div>
     )
 }

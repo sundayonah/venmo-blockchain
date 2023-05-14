@@ -89,18 +89,51 @@
     text-align: right;
     flex: 1;
 }
-
-.sendButton {
+.maxButton {
+    display: flex;
     background-color: var(--backColor);
     color: var(--secondary-color);
     border: 2px solid var(--primary-color);
     font-weight: bold;
-    padding: 0.725rem 3rem;
+    padding: 0.725rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.sendButton {
+    display: flex;
+    justify-content: center;
+    background-color: var(--backColor);
+    color: var(--secondary-color);
+    border: 2px solid var(--primary-color);
+    font-weight: bold;
+    padding: 0.725rem 1rem;
+    margin: 0.5rem;
     border-radius: 0.25rem;
     cursor: pointer;
 }
 .sendButton:hover {
     background-color: var(--hover);
+}
+.spinnerText {
+    padding-left: 0.5rem;
+}
+.spinner {
+    width: 15px;
+    height: 15px;
+    border-bottom: 2px solid #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    /* color: white; */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Swap */
