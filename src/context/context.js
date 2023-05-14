@@ -41,6 +41,7 @@ export const TransactioProvider = ({ children }) => {
             const accounts = await ethereum.request({ method: "eth_requestAccounts" })
             if (accounts.length) {
                 setCurrentAccoount(accounts[0])
+                getAllTransactions()
             } else {
                 console.log("No Accounts Fount")
             }
@@ -120,11 +121,11 @@ export const TransactioProvider = ({ children }) => {
         try {
             if (ethereum) {
                 const transactionContract = createEthereumContract()
-                const availableTransactions = await transactionContract.getAllTransactions()
+                const availableTransactions = await transactionContract.getAllTransaction()
 
                 const structuredTransactions = availableTransactions.map((transaction) => ({
                     addressTo: transaction.reciever,
-                    addressForm: transaction.sender,
+                    addressFrom: transaction.sender,
                     timestamp: timeAgo.format(
                         new Date(transaction.timestamp.toNumber() * 1000),
                         "mini"

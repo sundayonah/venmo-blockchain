@@ -34,7 +34,7 @@ function ActivityCard() {
                 </div>
             </div>
             <div className={styles.feedList}>
-                {transactions.map(({ id, addresFrom, timestamp, message, addressTo }, index) => (
+                {transactions.map(({ id, addressFrom, timestamp, message, addressTo }, index) => (
                     <div className={styles.feedItem} key={index}>
                         <div className={styles.avatarContainer}>
                             <img
@@ -45,7 +45,7 @@ function ActivityCard() {
                         </div>
                         <div className={styles.feedDetails}>
                             <h3 className={styles.feedAuthor}>
-                                {truncateEthAddress(addresFrom)} to {truncateEthAddress(addressTo)}
+                                {truncateEthAddress(addressFrom)} to {truncateEthAddress(addressTo)}
                             </h3>
                             <span className={styles.feedCreatedAt}>
                                 {timestamp}
