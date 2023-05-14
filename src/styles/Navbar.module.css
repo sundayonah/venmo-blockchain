@@ -1,68 +1,69 @@
 /* Containers */
 .navigationContainer {
-  background-color: white;
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 72rem;
-  margin: 0 auto;
-  padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 72rem;
+    margin: 0 auto;
+    /* margin-bottom: 4rem; */
+    padding: 0.5rem 2rem;
 }
 
 .actionsContainer {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.875rem;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.875rem;
 }
 
 /* Logo */
 .logoContainer {
-  width: 6rem;
-  height: auto;
+    width: 6rem;
+    height: auto;
 }
 
 .logoImage {
-  width: 100%;
-  height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 /* Menu Dropdown */
 .arrowDownIcon {
-  width: 1rem;
-  height: 1rem;
-  color: var(--primary-color);
-  stroke-width: 3px;
+    width: 1rem;
+    height: 1rem;
+    color: var(--primary-color);
+    stroke-width: 3px;
 }
 
 /* Avatar */
 .avatarContainer {
-  width: 3rem;
-  height: 3rem;
+    width: 3rem;
+    height: 3rem;
 }
 
 .avatarImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 9999px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 9999px;
 }
 
 .connectBtn {
-  background-color: var(--primary-color);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  cursor: pointer;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .accentColor {
-  color: var(--primary-color);
-  font-weight: bolder;
+    color: var(--primary-color);
+    font-weight: bolder;
 }

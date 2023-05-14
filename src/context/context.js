@@ -4,6 +4,7 @@ import { contractAbi, contractAddress } from "../utils/constants"
 import TimeAgo from "javascript-time-ago"
 import en from "javascript-time-ago/locale/en"
 import { Modal, message } from "antd"
+
 TimeAgo.addLocale(en)
 const timeAgo = new TimeAgo("en-US")
 
@@ -34,7 +35,6 @@ export const TransactioProvider = ({ children }) => {
     )
     // const [messageApi, contextHolder] = message.useMessage()
 
-    
     useEffect(() => {
         checkIfWalletIsConnected()
         checkIfTransactionExists()
@@ -50,11 +50,8 @@ export const TransactioProvider = ({ children }) => {
                 setCurrentAccoount(accounts[0])
                 getAllTransactions()
             } else {
-                console.log("No Accounts Fount")
             }
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
 
     const connectWallet = async () => {
@@ -65,11 +62,8 @@ export const TransactioProvider = ({ children }) => {
             const accounts = await ethereum.request({ method: "eth_requestAccounts" })
             setCurrentAccoount(accounts[0])
             window.location.reload()
-            console.log(accounts)
             throw new Error("No ethereum Object Found")
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
 
     const checkIfTransactionExists = async () => {
@@ -79,9 +73,7 @@ export const TransactioProvider = ({ children }) => {
                 const currentTransactionCount = await transactionContract.getTransactionCount()
                 window.localStorage.setItem("transactionCount", currentTransactionCount)
             }
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
 
     // //success f(x)
@@ -123,10 +115,9 @@ export const TransactioProvider = ({ children }) => {
                     parseAmount,
                     message
                 )
-                console.log(`Loading -- ${transactionHash.hash}`)
                 await transactionHash.wait()
                 // success()
-                console.log(`Succes -- ${transactionHash.hash}`)
+
                 setIsLoading(false)
                 // error()
 
@@ -134,11 +125,8 @@ export const TransactioProvider = ({ children }) => {
                 setTransactionCount(transactioCount.toNumber())
                 // window.location.reload()
             } else {
-                console.log("No ethereum Object")
             }
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
 
     // Get All Transaction
@@ -158,14 +146,10 @@ export const TransactioProvider = ({ children }) => {
                     message: transaction.message,
                     amount: parseInt(transaction.amount._hex) / 10 ** 18,
                 }))
-                console.log(structuredTransactions)
                 setTransactions(structuredTransactions)
             } else {
-                console.log("No ethereum Object")
             }
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
 
     const getBalance = async () => {
@@ -175,9 +159,7 @@ export const TransactioProvider = ({ children }) => {
             const balance = ethers.utils.formatEther(bal, "ether")
             setBalance(balance)
             setAmount(balance)
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     }
     const handleMaxChange = (e) => {
         getBalance()

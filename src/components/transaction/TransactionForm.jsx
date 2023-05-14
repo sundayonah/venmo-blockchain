@@ -10,8 +10,8 @@ function TransactionForm() {
         addressTo,
         setAmount,
         amount,
-        message,
-        setMessage,
+        messageIn,
+        setMessageIn,
         isLoading,
         balance,
         handleMaxChange,
@@ -21,7 +21,7 @@ function TransactionForm() {
     // SEND TRANSACTION
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (!addressTo || !amount || message) return
+        if (!addressTo || !amount || messageIn) return
         sendTransaction()
     }
 
@@ -53,8 +53,8 @@ function TransactionForm() {
                                 type="text"
                                 autoComplete="off"
                                 required
-                                value={message}
-                                onChange={(e) => setMessage(e.target.value)}
+                                value={messageIn}
+                                onChange={(e) => setMessageIn(e.target.value)}
                             />
                         </div>
                     </div>
