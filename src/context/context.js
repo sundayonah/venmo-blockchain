@@ -134,6 +134,8 @@ export const TransactioProvider = ({ children }) => {
                 }))
                 console.log(structuredTransactions)
                 setTransactions(structuredTransactions)
+            } else {
+                console.log("No ethereum Object")
             }
         } catch (error) {
             console.log(error)
