@@ -64,7 +64,7 @@ function TransactionForm() {
                             <button
                                 className={styles.sendButton}
                                 type="submit"
-                                // onClick={sendTransaction}
+                                onClick={sendTransaction}
                             >
                                 Send
                             </button>
