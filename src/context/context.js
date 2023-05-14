@@ -78,6 +78,7 @@ export const TransactioProvider = ({ children }) => {
     }
 
     const sendTransaction = async () => {
+        setIsLoading(true)
         try {
             if (ethereum) {
                 const transactionContract = createEthereumContract()
@@ -99,7 +100,6 @@ export const TransactioProvider = ({ children }) => {
                     parseAmount,
                     message
                 )
-                setIsLoading(true)
                 console.log(`Loading -- ${transactionHash.hash}`)
                 await transactionHash.wait()
                 console.log(`Succes -- ${transactionHash.hash}`)

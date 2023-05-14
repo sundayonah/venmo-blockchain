@@ -78,17 +78,29 @@ function TransactionForm() {
                             </button>
                         </div>
 
-                        <button
-                            className={styles.sendButton}
-                            type="submit"
-                            onClick={sendTransaction}
-                        >
-                            Send
-                        </button>
+                        {isLoading ? (
+                            <div className={styles.sendButton}>
+                                <div
+                                    className={styles.spinner}
+                                    type="submit"
+                                    // onClick={sendTransaction}
+                                ></div>
+                                <p className={styles.spinnerText}>Sending...</p>
+                            </div>
+                        ) : (
+                            <button
+                                className={styles.sendButton}
+                                type="submit"
+                                onClick={sendTransaction}
+                            >
+                                Send
+                            </button>
+                        )}
                     </div>
                 </div>
             </form>
             {/* <div className={styles.container}>hell</div> */}
+            {/* //0x01B94D550DC468a56132Fba9F9248e346c5Ba54c */}
         </div>
     )
 }
