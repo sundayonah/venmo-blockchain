@@ -13,6 +13,9 @@ function TransactionForm() {
         message,
         setMessage,
         isLoading,
+        balance,
+        handleMaxChange,
+        getBalance,
     } = useContext(TransactionContext)
 
     // SEND TRANSACTION
@@ -72,12 +75,7 @@ function TransactionForm() {
                                     />
                                 </div>
                             </div>
-                            <button
-                                className={styles.maxButton}
-                                type="submit"
-
-                                // onClick={sendTransaction}
-                            >
+                            <button className={styles.maxButton} onClick={handleMaxChange()}>
                                 MAX
                             </button>
                         </div>
