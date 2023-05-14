@@ -38,6 +38,7 @@ function TransactionForm() {
                                 className={styles.formInput}
                                 type="text"
                                 autoComplete="off"
+                                required
                                 value={addressTo}
                                 onChange={(e) => setAddressTo(e.target.value)}
                             />
@@ -48,6 +49,7 @@ function TransactionForm() {
                                 className={styles.formInput}
                                 type="text"
                                 autoComplete="off"
+                                required
                                 value={message}
                                 onChange={(e) => setMessage(e.target.value)}
                             />
@@ -64,6 +66,7 @@ function TransactionForm() {
                                         type="number"
                                         autoComplete="off"
                                         step="0.001"
+                                        required
                                         value={amount}
                                         onChange={(e) => setAmount(e.target.value)}
                                     />
@@ -72,7 +75,8 @@ function TransactionForm() {
                             <button
                                 className={styles.maxButton}
                                 type="submit"
-                                onClick={sendTransaction}
+
+                                // onClick={sendTransaction}
                             >
                                 MAX
                             </button>
@@ -80,11 +84,7 @@ function TransactionForm() {
 
                         {isLoading ? (
                             <div className={styles.sendButton}>
-                                <div
-                                    className={styles.spinner}
-                                    type="submit"
-                                    // onClick={sendTransaction}
-                                ></div>
+                                <div className={styles.spinner}></div>
                                 <p className={styles.spinnerText}>Sending...</p>
                             </div>
                         ) : (

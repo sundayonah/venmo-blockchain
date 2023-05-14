@@ -24,6 +24,8 @@ export const TransactioProvider = ({ children }) => {
     const [message, setMessage] = useState("")
     const [isLoading, setIsLoading] = useState(false)
     const [transactions, setTransactions] = useState([])
+    const [balance, setBalance] = useState(null)
+
     const [transactionCount, setTransactionCount] = useState(
         localStorage.getItem("transactioCount")
     )
@@ -58,7 +60,7 @@ export const TransactioProvider = ({ children }) => {
             const accounts = await ethereum.request({ method: "eth_requestAccounts" })
             setCurrentAccoount(accounts[0])
             window.location.reload()
-            console.log(currentAccount)
+            console.log(accounts)
             throw new Error("No ethereum Object Found")
         } catch (error) {
             console.log(error)
@@ -142,6 +144,49 @@ export const TransactioProvider = ({ children }) => {
             console.log(error)
         }
     }
+    // const getAccountBalance = async () => {
+    //     try {
+    //         // Fetch the account balance using the eth_getBalance method
+    //         const balance = await ethereum.request({
+    //             method: "eth_getBalance",
+    //             params: [currentAccount, "latest"],
+    //         })
+
+    //         // Convert the balance from Wei to Ether or any other desired format
+    //         const formattedBalance = convertWeiToEth(balance)
+    //         console.log(formattedBalance)
+    //         return formattedBalance
+    //     } catch (error) {
+    //         console.log("Error fetching account balance:", error)
+    //         return null
+    //     }
+    // }
+
+    // // Function to convert Wei value to Ether
+    // const convertWeiToEth = (weiValue) => {
+    //     const ethValue = parseFloat(weiValue) / 1e18
+    //     return ethValue.toFixed(2)
+    // }
+
+    useEffect(() => {
+        const getBalance = async () => {
+            try {
+                const provider = new ethers.providers.Web3Provider(window.ethereum)
+                const bal = await provider.getBalance(currentAccount)
+                const balance = ethers.utils.formatEther(bal, "ether")
+                const amountToString = parseFloat(balance.toString())
+                const roundAmount = amountToString.toFixed(4)
+                setBalance(balance.toString())
+                console.log(roundAmount)
+            } catch (error) {
+                // console.log(error)
+            }
+        }
+        getBalance()
+    }, [currentAccount])
+
+
+    const handleMaxChange = () => {}
 
     return (
         <TransactionContext.Provider
